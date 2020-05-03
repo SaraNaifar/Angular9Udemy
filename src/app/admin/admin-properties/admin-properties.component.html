@@ -1,0 +1,71 @@
+
+<div class="rounded shadow bg-white p-5">
+    <div class="row">
+        <div class="col-12 d-flex">
+            <h2 class="font-weight-light"> <i class="fas fa-home"></i>Biens immobiliers</h2>
+            <button class="btn btn-primary ml-auto" type="button" data-toggle="modal" data-target="#propertiesFormModal" ><i class="fas fa-plus"></i>Ajouter un bien</button>
+        </div>
+    </div>
+    <hr class="mt-1 mb-5 bg-dark">
+    <div class="row">
+        <div class="col-12 shadow-sm p-4 mb-3 bg-light"  *ngFor= "let property of properties"; let i =index>
+          
+            <div class="d-flex">
+              <h3 class="font-wight-normal">{{property.title}}</h3>
+        
+
+            </div>
+          
+        </div>
+    </div>
+</div>
+<!--Modal-->
+
+<div class="modal fade" id="propertiesFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <!--Avec la methode reactive form on utilise property binding pour la reference de formulaire-->
+        <form [formGroup]= "propertiesForm" (ngSubmit)= "onSubmitProperties()">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Edition de bien</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Titre" formControlName="title" >
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" formControlName="typebien" >
+                
+                      <option value="appartement">Appartement</option>
+                      <option value="maison">Maison</option>
+                    </select>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-6">
+                        <input class="form-control" type="text" placeholder="Surface (m²)" formControlName="surface" >
+                    </div>
+                    <div class="form-group col-6">
+                        <input class="form-control" type="text" placeholder="nombre de piéce" formControlName="pieces" >
+                    </div>
+                  </div>
+                  <div class="form-group">
+                      <textarea class="form-control w-100" rows="4" placeholder="Description du bien" formControlName="description" ></textarea>
+                  </div>
+                 <div class="form-group">
+                    <input class="form-control" type="text" placeholder="Prix" formControlName="price" >
+                 </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary" [disabled]= "propertiesForm.invalid">Enregistrer</button>
+              </div>
+        </form>
+      </div>
+    </div>
+  </div>
