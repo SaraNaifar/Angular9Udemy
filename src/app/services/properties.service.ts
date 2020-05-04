@@ -10,17 +10,20 @@ export class PropertiesService {
     {
       title: 'Ma super Maison',
       category:'Maison',
-      sold:true
+      sold:true,
+      
     },
     {
       title: 'Petit appartement',
-      category:'appartement',
-      sold:true
+      category:'Appartement',
+      sold:true,
+     
     },
     {
       title: 'Villa',
-      category:'villa s+3',
-      sold:false
+      category:'Villa s+3',
+      sold:false,
+     
     },
   ]
   //4: propertiesubject joue le role d'un observer et un emeter
@@ -57,5 +60,16 @@ export class PropertiesService {
   }
   createProperty(property){
     this.properties.push(property)
+  }
+  deleteProperty(index){
+      this.properties.splice(index, 1)
+      console.log(index)
+      this.getProperties()
+  }
+
+  updateProperty(property, index){
+    this.properties[index] = property
+    console.log('jjjjjjjj')
+    this.getProperties()
   }
 }
