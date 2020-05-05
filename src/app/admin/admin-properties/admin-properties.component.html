@@ -26,6 +26,11 @@
             <p>
               <span *ngIf=" property.price && property.price != ''">{{property.price}} £ </span>
             </p>
+            <p>
+              <span *ngIf="property.sold" class="text-success" > Vendu!</span>
+              <span *ngIf="!property.sold" class="text-danger">a Vendre</span>
+            </p>
+           
         </div>
     </div>
 </div>
@@ -71,7 +76,19 @@
                  <div class="form-group">
                     <input class="form-control" type="text" placeholder="Prix" formControlName="price" >
                  </div>
+                
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1" formControlName="sold">
+                    <label class="custom-control-label" for="customSwitch1" >
+                      <p>
+                        <span *ngIf="propertiesForm.value.sold" class="text-success" > Vendu!</span>
+                        <span *ngIf="!propertiesForm.value.sold" class="text-danger" >a Vendre</span>
+                      </p>
+                    </label>
+                </div>
+                
               </div>
+             
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
                 <button type="submit" class="btn btn-primary" [disabled]= "propertiesForm.invalid">Enregistrer</button>

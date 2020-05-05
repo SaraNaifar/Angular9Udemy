@@ -14,7 +14,7 @@ export class AdminPropertiesComponent implements OnInit {
   propertiesForm: FormGroup;
   properties: any[];
   indexToDelete;
-  editMode=true;
+  editMode=false;
   indexToEdit;
 
   //on fait l'instantiation de service formBuilder au constructeur
@@ -38,7 +38,8 @@ export class AdminPropertiesComponent implements OnInit {
       surface:'', 
       pieces:'', 
       description:'',
-      price:''
+      price:'', 
+      sold:''
 
     })
   }
@@ -71,6 +72,7 @@ export class AdminPropertiesComponent implements OnInit {
   //Pour ouvrir Modal de modification
   //fonctionnalité de modification
   onOpenEditModal(property , index){
+    this.editMode=true;
     $("#propertiesFormModal").modal('show')
     this.indexToEdit=index
     this.propertiesForm.get('title').setValue(property.title)
@@ -80,6 +82,8 @@ export class AdminPropertiesComponent implements OnInit {
     this.propertiesForm.get('pieces').setValue(property.pieces)
     this.propertiesForm.get('description').setValue(property.description)
     this.propertiesForm.get('price').setValue(property.price)
+    this.propertiesForm.get('sold').setValue(property.sold)
+
     
   }
 }

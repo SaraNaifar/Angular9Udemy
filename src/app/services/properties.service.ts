@@ -10,7 +10,7 @@ export class PropertiesService {
     {
       title: 'Ma super Maison',
       category:'Maison',
-      sold:true,
+      sold:false,
       
     },
     {
