@@ -4,6 +4,7 @@ import { PropertiesService } from 'src/app/services/properties.service';
 //pour fermer le modal aprés l'ajout des donnés
 import * as $ from 'jquery'
 import { Title } from '@angular/platform-browser';
+import { Property } from 'src/app/interfaces/property';
 @Component({
   selector: 'app-admin-properties',
   templateUrl: './admin-properties.component.html',
@@ -12,7 +13,7 @@ import { Title } from '@angular/platform-browser';
 export class AdminPropertiesComponent implements OnInit {
 
   propertiesForm: FormGroup;
-  properties: any[];
+  properties: Property[];
   indexToDelete;
   editMode=false;
   indexToEdit;
@@ -23,7 +24,7 @@ export class AdminPropertiesComponent implements OnInit {
   ngOnInit(){
     this.formInitialisation();
     this.propertiesService.propertiesSubject.subscribe(
-      (data)=>{
+      (data:Property[])=>{
         this.properties =  data
       })
     this.propertiesService.getProperties();
@@ -45,7 +46,7 @@ export class AdminPropertiesComponent implements OnInit {
   }
   onSubmitProperties(){
 
-    let newProperty = this.propertiesForm.value
+    let newProperty: Property = this.propertiesForm.value
     if(this.editMode){
       this.propertiesService.updateProperty(newProperty, this.indexToEdit)
     }else{
